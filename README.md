@@ -14,13 +14,14 @@ Al colaborar con el desarrollo en este proyecto se conoce una de las aplicacione
 
 ## Coordinador a PhiS
 
-- Diego Hurtado Rojad
+- Diego Hurtado Rojas
 
 ## Equipo
 
 - Samuel Piedra
 - Hernán Barquero
-- Gabriel Alvarez 
+- Gabriel Alvarez
+- Angel Mendieta 
 
 ## Estructura del repositorio
 
