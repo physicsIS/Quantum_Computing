@@ -21,7 +21,10 @@ Al colaborar con el desarrollo en este proyecto se conoce una de las aplicacione
 - Samuel Piedra
 - Hernán Barquero
 - Gabriel Alvarez
-- Angel Mendieta 
+- Angel Mendieta
+- Kayro Romero
+- Barnald Bocker
+- David Granados 
 
 ## Estructura del repositorio
 
