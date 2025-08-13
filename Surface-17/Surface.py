@@ -1,7 +1,11 @@
 import stim 
+import numpy as np
+import matplotlib.pyplot as plt
 
+#--------------------------------------------------------------------------------------------------------------------------------
 def surface(distance, rounds):
     circuit = stim.Circuit()
+
 
     # Crear malla de qubits de datos
     qubits = [[x + distance * y for x in range(distance)] for y in range(distance)]
@@ -35,7 +39,7 @@ def surface(distance, rounds):
 
         if x % 2 == 0:
             plaqueta_top = [qubits[distance-1][x], qubits[distance-1][x+1]]
-            stab_type = "X"
+            stab_type = "Z"
             stabilizers.append({
                 "type": stab_type,
                 "data": plaqueta_top,
@@ -47,7 +51,7 @@ def surface(distance, rounds):
 
         if x % 2 != 0:
             plaqueta_bottom = [qubits[0][x], qubits[0][x+1]]
-            stab_type = "X"
+            stab_type = "Z"
             stabilizers.append({
                 "type": stab_type,
                 "data": plaqueta_bottom,
@@ -62,7 +66,7 @@ def surface(distance, rounds):
         if y % 2 == 0:
 
             plaqueta_left = [qubits[y][0], qubits[y+1][0]]
-            stab_type = "Z"
+            stab_type = "X"
             stabilizers.append({
                 "type": stab_type,
                 "data": plaqueta_left,
@@ -74,7 +78,7 @@ def surface(distance, rounds):
         if y % 2 != 0:
 
             plaqueta_right = [qubits[y][distance-1], qubits[y+1][distance-1]]
-            stab_type = "Z"
+            stab_type = "X"
             stabilizers.append({
                 "type": stab_type,
                 "data": plaqueta_right,
@@ -82,8 +86,12 @@ def surface(distance, rounds):
             })
             ancilla_index += 1
 
+
+
+
+
     # Medición de estabilizadores (una sola ronda por ahora)
-    for _ in range(rounds):
+    for r in range(rounds):
         for stab in stabilizers:
             a = stab["ancilla"]
             data_qubits = stab["data"]
@@ -99,10 +107,66 @@ def surface(distance, rounds):
                     circuit.append("CX", [a, d])
                 circuit.append("H", [a])
 
-            circuit.append("M", [a])
+            circuit.append("M", [a], tag =  f"r{r}_anc{a}")
+        
+
+
 
     return circuit
+#-------------------------------------------------------------------------------------------------
+
+
+def visual(distance, rounds, shots, error):
+
+    circuit = surface(distance, rounds)
+
+
+    for q in range(distance * distance):
+        circuit.append("X_ERROR", [q], error)
+        circuit.append("Z_ERROR", [q], error)
+
+
+    circuit.append("M", range(distance * distance))
+
+
+    sampler = circuit.compile_sampler()
+    samples = sampler.sample(shots)
+
+
+    data_errors = samples[:, -distance*distance:]
+
+    error_counts = np.sum (data_errors, axis=0)
+    qubit_indices = np.arange(distance*distance)
+
+
+    plt.figure(figsize=(12, 6))
+    bars = plt.bar(qubit_indices, error_counts, color='skyblue')
+
+    # Resaltar qubits con más errores
+    max_errors = np.max(error_counts)
+    for bar, count in zip(bars, error_counts):
+        if count == max_errors:
+            bar.set_color('red')
+
+    plt.xlabel("Qubit Físico (Índice)")
+    plt.ylabel("Errores Detectados")
+    plt.title(f"Distribución de Errores en Surface Code {distance}x{distance}\n"
+             f"{rounds} rondas, {shots} shots, Probabilidad de error: {error}")
+    plt.xticks(qubit_indices)
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+    # Añadir anotaciones
+    for i, count in enumerate(error_counts):
+        plt.text(i, count + 5, str(count), ha='center')
+
+    plt.show()
+
+
+
+
+
 
 # Ejemplo de prueba
-prueba = surface(3, 1)
-print(prueba)
+#prueba = surface(3, 2)
+#print(prueba)
+visual(3,1,100,0.1)
