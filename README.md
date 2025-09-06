@@ -28,6 +28,7 @@ Al colaborar con el desarrollo en este proyecto se conoce una de las aplicacione
 ### Práctica general computación cuántica: 
 
    -practica.ipynb: contiene diferentes soluciones tanto computarizadas como analíticas a problemas de computación cuántica
+
    -1-Quantum-Circuits: apartado para guardar los gifs generados en "practica.ipynb "
 
 ### Surface codes: 
