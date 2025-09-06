@@ -33,16 +33,19 @@ Al colaborar con el desarrollo en este proyecto se conoce una de las aplicacione
 ### Surface codes: 
 
    -Surface-17_Barnald.ipynb: código de superficie de distancia 17 usando la biblioteca Qiskit.
+
          Autor: Barnald Bocker
          Estado: funcional
          Lenguaje: Python (jupyter notebook)
 
    -Surface_Kayro.ipynb: código de superficie para cualquier distancia de código usando la biblioteca Stim.
+
          Autor: Kayro Romero 
          Estado: incompleto
          Lenguaje: Python (jupyter notebook)
 
-   -Surface_Diego.py: código de superficie para cualquier distancia de código usando la biblioteca Stim.   
+   -Surface_Diego.py: código de superficie para cualquier distancia de código usando la biblioteca Stim.
+   
          Autor: Diego Hurtado
          Estado: incompleto
          Lenguaje: Python
@@ -50,6 +53,7 @@ Al colaborar con el desarrollo en este proyecto se conoce una de las aplicacione
 ### Repetition codes: 
    
    -Repetition_code.ipynb: código de repetición usando la biblioteca Qiskit
+
          Autor: Barnald Bocker
          Estado: funcional
          Lenguaje: Python (jupyter notebook) 
