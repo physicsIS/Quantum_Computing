@@ -25,12 +25,12 @@ Al colaborar con el desarrollo en este proyecto se conoce una de las aplicacione
 
 ## Estructura del repositorio
 
-Práctica general computación cuántica: 
+### Práctica general computación cuántica: 
 
    -practica.ipynb: contiene diferentes soluciones tanto computarizadas como analíticas a problemas de computación cuántica
    -1-Quantum-Circuits: apartado para guardar los gifs generados en "practica.ipynb "
 
-Surface codes: 
+### Surface codes: 
 
    -Surface-17_Barnald.ipynb: código de superficie de distancia 17 usando la biblioteca Qiskit.
          Autor: Barnald Bocker
@@ -47,7 +47,7 @@ Surface codes:
          Estado: incompleto
          Lenguaje: Python
 
-Repetition codes: 
+### Repetition codes: 
    
    -Repetition_code.ipynb: código de repetición usando la biblioteca Qiskit
          Autor: Barnald Bocker
